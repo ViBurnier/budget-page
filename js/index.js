@@ -80,12 +80,17 @@ function getInfo() {
     let expenses = new Despesas(day.value, month.value, year.value, type.value, description.value, valor.value)
     storage.storageExpenses(expenses)
     
+
+    /**
+     * faz o modal aparecer para o usuario de acordo com o if.
+     * 
+     * (FAZER UMA FUNC APENAS PARA O MODAL, USANDO O EXPENSES SE DER.)
+     */
     let tituloM = document.querySelector('h5#tituloM')
     let corM = document.querySelector('div#corM')
     let bodyM = document.querySelector('p#modalBody')
 
     if(expenses.ValidarDados()){
-        
         corM.classList.add('text-success')
         tituloM.innerHTML = 'Resgistrado com sucesso!'
         bodyM.innerHTML = 'Despesa foi cadastrada com sucesso'

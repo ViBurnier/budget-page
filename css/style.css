@@ -1,3 +1,33 @@
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+html,
+body,
+#wrap {
+    position: relative;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    background-image: url(/img/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#wrap {  
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1024px;
+    margin: auto;
+    
+}
+
 header{
     background-color: rgb(33, 114, 236);
     height: 75px; 
@@ -6,7 +36,7 @@ header{
 
 }
 
-header div a{
+header a{
     margin-right: 2rem;
 }
 
@@ -14,23 +44,25 @@ header div>a:hover{
     color: rgba(207, 205, 205, 0.801) ;
     text-decoration: none;
 }
+main div{
+    background-color: rgb(42, 130, 212);
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+
+}
 
 main{
-    background-color: rgb(42, 130, 212);
-    margin-top: 1rem;
+    background-color: aliceblue;
     padding: 2rem;
-    
+    height: 100%;
+    width: 100%;
 }
 
-main .days{
-   
-}
 
 a{
     color: aliceblue;
     font-weight: bold;
     font-size: 16px;    
 }
-
 
 
