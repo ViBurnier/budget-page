@@ -61,12 +61,25 @@ class setNewItem {
         localStorage.setItem('id', id)
     }
 
+    recoverRegister(){
+        let id = localStorage.getItem('id')
+        let arr = Array()
+        for(let i = 1; i <= id; i++){
+            let expenses = JSON.parse(localStorage.getItem(i))
+            
+            if(expenses === null){
+                continue
+            }
+            arr.push(expenses)
+        }
+        return arr
+    }
 }
 
 let storage = new setNewItem()
 
 /**
- * pega os dados dos campos no html, passa pra Despesas, e chama o modal para usuario saber se teve sucesso ou nao e armazena as informacoes no storage. 
+ * pega os dados dos campos no html, passa pra Despesas. 
  */
 
 function getInfo() {
@@ -76,35 +89,28 @@ function getInfo() {
     let type = document.getElementById('type')
     let description = document.getElementById('descricao')
     let valor = document.getElementById('valor')
-    
-    let expenses = new Despesas(day.value, month.value, year.value, type.value, description.value, valor.value)
-    storage.storageExpenses(expenses)
-    
-
-    /**
-     * faz o modal aparecer para o usuario de acordo com o if.
-     * 
-     * (FAZER UMA FUNC APENAS PARA O MODAL, USANDO O EXPENSES SE DER.)
-     */
     let tituloM = document.querySelector('h5#tituloM')
     let corM = document.querySelector('div#corM')
     let bodyM = document.querySelector('p#modalBody')
+    let expenses = new Despesas(day.value, month.value, year.value, type.value, description.value, valor.value)
+    storage.storageExpenses(expenses)
 
-    if(expenses.ValidarDados()){
-        corM.classList.add('text-success')
-        tituloM.innerHTML = 'Resgistrado com sucesso!'
-        bodyM.innerHTML = 'Despesa foi cadastrada com sucesso'
-        $('#modalRegister').modal('show')
-        corM.classList.remove('text-danger')
+    showModal(tituloM, corM, bodyM, expenses.ValidarDados());
+}
+    /*
+     * chama o modal para usuario saber se teve sucesso ou nao em armazena as informacoes no storage.
+    */
+function showModal(tituloM, corM, bodyM, sucesso) {
+    if (sucesso) {
+        corM.classList.add('text-success');
+        corM.classList.remove('text-danger');
+        tituloM.innerHTML = 'Registrado com sucesso!';
+        bodyM.innerHTML = 'Despesa foi cadastrada com sucesso';
+    } else {
+        corM.classList.add('text-danger');
+        corM.classList.remove('text-success');
+        tituloM.innerHTML = 'Registro falhou!';
+        bodyM.innerHTML = 'Existem campos que não foram preenchidos';
     }
-    else{
-        corM.classList.add('text-danger')
-        tituloM.innerHTML = 'Registro falhou!'
-        bodyM.innerHTML = 'Existem campos que não foram preenchidos'
-        $('#modalRegister').modal('show')
-        corM.classList.remove('text-success')
-        
-    }
-
-    
+    $('#modalRegister').modal('show');
 }
