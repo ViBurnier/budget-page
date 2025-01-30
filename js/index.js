@@ -61,13 +61,13 @@ class setNewItem {
         localStorage.setItem('id', id)
     }
 
-    recoverRegister(){
+    recoverRegister() {
         let id = localStorage.getItem('id')
         let arr = Array()
-        for(let i = 1; i <= id; i++){
+        for (let i = 1; i <= id; i++) {
             let expenses = JSON.parse(localStorage.getItem(i))
-            
-            if(expenses === null){
+
+            if (expenses === null) {
                 continue
             }
             arr.push(expenses)
@@ -97,9 +97,9 @@ function getInfo() {
 
     showModal(tituloM, corM, bodyM, expenses.ValidarDados());
 }
-    /*
-     * chama o modal para usuario saber se teve sucesso ou nao em armazena as informacoes no storage.
-    */
+/*
+ * chama o modal para usuario saber se teve sucesso ou nao em armazena as informacoes no storage.
+*/
 function showModal(tituloM, corM, bodyM, sucesso) {
     if (sucesso) {
         corM.classList.add('text-success');

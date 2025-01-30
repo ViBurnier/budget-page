@@ -23,7 +23,7 @@ body{
     display: flex;
     flex-direction: column;
     width: 100%;
-    max-width: 1024px;
+    max-width: 1026px;
     margin: auto;
     
 }
@@ -57,7 +57,6 @@ main{
     height: 100%;
     width: 100%;
 }
-
 
 a{
     color: aliceblue;
