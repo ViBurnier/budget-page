@@ -1,0 +1,36 @@
+header{
+    background-color: rgb(33, 114, 236);
+    height: 75px; 
+    display: flex;
+    align-items: center;
+
+}
+
+header div a{
+    margin-right: 2rem;
+}
+
+header div>a:hover{
+    color: rgba(207, 205, 205, 0.801) ;
+    text-decoration: none;
+}
+
+main{
+    background-color: rgb(42, 130, 212);
+    margin-top: 1rem;
+    padding: 2rem;
+    
+}
+
+main .days{
+   
+}
+
+a{
+    color: aliceblue;
+    font-weight: bold;
+    font-size: 16px;    
+}
+
+
+
