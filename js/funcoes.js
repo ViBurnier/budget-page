@@ -45,7 +45,7 @@ function template() {
                             <form action="">
                                 <div class="form-group">
                                     <select class="form-control" id="month">
-                                        <option value="">Month</option>
+                                        <option value="0">Month</option>
                                         <option value="1">January</option>
                                         <option value="2">February</option>
                                         <option value="3">March</option>

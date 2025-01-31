@@ -3,7 +3,7 @@
  */
 function btnAdd() {
     getInfo()
-    console.log(validarModal())
+    
 }
 
 /**
@@ -23,7 +23,7 @@ class Despesas {
      */
     ValidarDados() {
         for (let i in this) {
-            if (this[i] == undefined || this[i] == null || this[i] == '') {
+            if (this[i] == undefined || this[i] == null || this[i] == '' || this[i] == 'Type' || this[i] == 0) {
                 return false
             }
         }
@@ -62,24 +62,32 @@ class setNewItem {
     }
 
     recoverRegister() {
-        let id = localStorage.getItem('id')
-        let arr = Array()
+        // Obtém o valor do item 'id' armazenado no localStorage.
+        let id = localStorage.getItem('id');
+        
+        // Cria um array vazio para armazenar as despesas recuperadas.
+        let arr = Array();
+        
+        // Loop para iterar desde 1 até o valor de 'id'.
         for (let i = 1; i <= id; i++) {
-            let expenses = JSON.parse(localStorage.getItem(i))
-
+            // Recupera o item do localStorage com a chave igual ao valor de 'i' e o transforma de volta em objeto.
+            let expenses = JSON.parse(localStorage.getItem(i));
+            
+            // Se não houver despesa (item for null), continua para a próxima iteração do loop.
             if (expenses === null) {
-                continue
+                continue;
             }
-            arr.push(expenses)
+            
+            // Adiciona a despesa ao array 'arr'.
+            arr.push
         }
-        return arr
     }
 }
 
 let storage = new setNewItem()
 
 /**
- * pega os dados dos campos no html, passa pra Despesas. 
+ * pega os dados dos campos no html passando para Despesas. 
  */
 
 function getInfo() {
@@ -95,17 +103,31 @@ function getInfo() {
     let expenses = new Despesas(day.value, month.value, year.value, type.value, description.value, valor.value)
     storage.storageExpenses(expenses)
 
-    showModal(tituloM, corM, bodyM, expenses.ValidarDados());
+    showModal(tituloM, corM, bodyM, expenses.ValidarDados(),day, month, year, type, description, valor);
 }
+
+function clearfields(d, m, y, t, de, v){
+        d.value = ''
+        m.value = 0
+        y.value = ''
+        t.value = 'Type'
+        de.value = ''
+        v.value = ''
+
+}
+
 /*
  * chama o modal para usuario saber se teve sucesso ou nao em armazena as informacoes no storage.
 */
-function showModal(tituloM, corM, bodyM, sucesso) {
+function showModal(tituloM, corM, bodyM, sucesso, day, month, year, type, description, valor) {
     if (sucesso) {
         corM.classList.add('text-success');
         corM.classList.remove('text-danger');
         tituloM.innerHTML = 'Registrado com sucesso!';
         bodyM.innerHTML = 'Despesa foi cadastrada com sucesso';
+        clearfields(day, month, year, type, description, valor)
+
+
     } else {
         corM.classList.add('text-danger');
         corM.classList.remove('text-success');
@@ -114,3 +136,4 @@ function showModal(tituloM, corM, bodyM, sucesso) {
     }
     $('#modalRegister').modal('show');
 }
+
